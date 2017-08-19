@@ -26,18 +26,26 @@ input {
     font-size: 16px;
 }
 
-input[type="text"] {
+input {
     margin-bottom: 20px;
     padding: 15px 10px;
     height: 50px;
 }
 
 input[type="submit"] {
+    margin-bottom: 0;
+    height: auto;
     border: none;
     background-color: #0080ff;
     padding: 15px;
     text-transform: uppercase;
     color: #fff;
+    cursor: default;
+}
+
+input[type="submit"]:disabled {
+    cursor: default;
+    background-color: #ccc;
 }
 
 .error {
