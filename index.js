@@ -96,6 +96,10 @@ window.onload = () => {
       if (this.validate().isValid) {
         const url = encodeURI(form.getAttribute('action'));
 
+        if (this.intervalId) {
+          clearInterval(this.intervalId);
+        }
+
         submit.setAttribute('disabled', 'disabled');
 
         fetch(url).then(response => {
@@ -119,7 +123,7 @@ window.onload = () => {
             } else if (resp.status === 'progress') {
               resultContainer.classList.add('progress');
 
-              setInterval(() => {
+              this.intervalId = setInterval(() => {
                 this.submit();
               }, resp.timeout);
             }
