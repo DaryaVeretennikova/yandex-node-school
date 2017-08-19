@@ -20,6 +20,16 @@ window.onload = () => {
     return sum <= 30;
   };
 
+  const setValid = (input, inputName, ErrorFields) => {
+    input.classList.remove('error');
+    ErrorFields = ErrorFields.filter(item => item !== inputName);
+  };
+
+  const setInvalid = (input, inputName, ErrorFields) => {
+    input.classList.add('error');
+    ErrorFields.push(inputName);
+  };
+
   MyForm = {
     validate: function() {
       let isValid;
@@ -29,38 +39,28 @@ window.onload = () => {
         const input = form.querySelector(`input[name="${inputName}"]`);
         const value = input.value.trim();
 
-        const setValid = (input, inputName) => {
-          input.classList.remove('error');
-          ErrorFields = ErrorFields.filter(item => item !== inputName);
-        };
-
-        const setInvalid = (input, inputName) => {
-          input.classList.add('error');
-          ErrorFields.push(inputName);
-        };
-
         if (value.length === 0) {
-          setInvalid(input, inputName);
+          setInvalid(input, inputName, ErrorFields);
           return;
         }
 
         if (inputName === 'fio') {
           if (fioRegexp.test(value)) {
-            setValid(input, inputName);
+            setValid(input, inputName, ErrorFields);
           } else {
-            setInvalid(input, inputName);
+            setInvalid(input, inputName, ErrorFields);
           }
         } else if (inputName === 'email') {
           if (emailRegexp.test(value)) {
-            setValid(input, inputName);
+            setValid(input, inputName, ErrorFields);
           } else {
-            setInvalid(input, inputName);
+            setInvalid(input, inputName, ErrorFields);
           }
         } else if (inputName === 'phone') {
           if (phoneRegexp.test(value) && checkSum(value)) {
-            setValid(input, inputName);
+            setValid(input, inputName, ErrorFields);
           } else {
-            setInvalid(input, inputName);
+            setInvalid(input, inputName, ErrorFields);
           }
         }
       });
