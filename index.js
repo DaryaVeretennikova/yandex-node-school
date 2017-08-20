@@ -1,4 +1,4 @@
-let NyForm;
+let MyForm;
 
 window.onload = () => {
   const inputsNames = ['fio', 'email', 'phone'];
